@@ -23,6 +23,28 @@ public class ProductService {
         }
     }
 
+    public static void displayPage(int pageNumber, int pageSize){
+
+        int indexStart = 0;
+        int indexEnd=0;
+        int numberOfPage = (int) Math.floor( 100 /(double)pageSize);
+        boolean isPagenumberlastPage= numberOfPage == pageNumber;
+        if (isPagenumberlastPage){
+            indexStart=pageSize*numberOfPage;
+            indexEnd=100;
+        } else {
+            indexStart= (pageNumber-1)*pageSize;
+            indexEnd= indexStart+pageSize;
+        }
+
+        for (int index=indexStart;index<indexEnd;index++){
+            System.out.println(products.get(index));
+        }
+    }
+
+
+
+
     private static void themMotSanPham(){
         String productName= addProductName();
         long price = setPrice();
@@ -45,5 +67,6 @@ public class ProductService {
     public static long nextLongBetween(long min, long max) {
         return ThreadLocalRandom.current().nextLong(min, max);
     }
+
 
 }
