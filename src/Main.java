@@ -8,10 +8,8 @@ public class Main {
 
         ProductService.taoDanhSachSanPham();
         ProductService.inRaSanPham();
-
         Seller.addProduct();
 //        ProductService.inRaSanPham();
-
         Customer.displayPage(3,40);
     }
 }

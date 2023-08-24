@@ -39,16 +39,17 @@ public class ProductService {
         Product product = new Product(productName,price);
         products.add(product);
     }
+
+    //cho tên tự tăng
     public static String addProductName() {
         productNumber++;
         return productName+productNumber;
     }
 
-
+    //random price
     public static long setPrice() {
         return randomPrice();
     }
-
     private static long randomPrice(){
         return nextLongBetween(10, 1000);
     }
