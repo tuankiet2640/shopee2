@@ -23,24 +23,7 @@ public class ProductService {
         }
     }
 
-    public static void displayPage(int pageNumber, int pageSize){
 
-        int indexStart;
-        int indexEnd;
-
-        indexStart= (pageNumber-1)*pageSize;
-        indexEnd= indexStart+pageSize;
-
-        if(indexStart>products.size()-1){
-            System.out.println("nhap khong hop le");
-        }
-        if (indexStart<products.size()){
-            indexEnd=products.size();
-            for (int index=indexStart;index<indexEnd;index++){
-                System.out.println(products.get(index));
-            }
-        }
-    }
 
     public static List<Product> getList() {
         return products;
