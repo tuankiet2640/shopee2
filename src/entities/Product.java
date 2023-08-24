@@ -15,6 +15,10 @@ public class Product {
         this.price=price;
     }
 
+    public Product(long price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return productName+" " + price ;

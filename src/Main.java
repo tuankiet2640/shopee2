@@ -1,10 +1,15 @@
 import entities.Product;
+import entities.Seller;
 import service.ProductService;
 
 public class Main {
     public static void main(String[] args) {
         ProductService.taoDanhSachSanPham();
         ProductService.inRaSanPham();
-        ProductService.displayPage(2,30);
+
+        Seller.addProduct();
+//        ProductService.inRaSanPham();
+
+        ProductService.displayPage(3,40);
     }
 }
