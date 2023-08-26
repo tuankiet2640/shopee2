@@ -5,7 +5,7 @@ import entities.Product;
 import java.util.List;
 import java.util.Scanner;
 
-public class Seller {
+public class Seller extends User {
     private static ProductService productService= new ProductService();
     private final static List<Product> products = productService.getList();
     private static final Scanner scanner = new Scanner(System.in);

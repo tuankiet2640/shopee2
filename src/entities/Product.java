@@ -7,11 +7,19 @@ public class Product {
     private  long price;
 
 
+    public String getProductName() {
+        return productName;
+    }
+
+    public long getPrice() {
+        return price;
+    }
+
     public Product() {
     }
 
     public Product(String productName, long price) {
-        this.productName=productName;
+        this.productName=productName;                     
         this.price=price;
     }
 

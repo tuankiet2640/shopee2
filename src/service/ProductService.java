@@ -57,5 +57,4 @@ public class ProductService {
         return ThreadLocalRandom.current().nextLong(min, max);
     }
 
-
 }
