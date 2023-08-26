@@ -1,6 +1,7 @@
 import entities.Customer;
 import entities.Product;
 import entities.Seller;
+import service.CartService;
 import service.CustomerService;
 import service.ProductService;
 
@@ -9,7 +10,9 @@ public class Main {
 
         ProductService.taoDanhSachSanPham();
         ProductService.inRaSanPham();
-        Seller.addProduct();
+
+        CartService.addToCart();
+//        Seller.addProduct();
 //        ProductService.inRaSanPham();
         CustomerService.displayPage(3,40);
     }

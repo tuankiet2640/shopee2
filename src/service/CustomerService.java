@@ -13,8 +13,6 @@ public class CustomerService {
     private static Cart cart= new Cart();
 
 
-
-
     public static void displayPage(int pageNumber, int pageSize){
 
         int indexStart;
