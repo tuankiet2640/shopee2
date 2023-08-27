@@ -45,7 +45,6 @@ public class CartService {
         for (CartItem cartitem : cartitems){
             sum+= cartitem.getSubtotal();
         }
-        System.out.println(sum);
+        System.out.println("tong gia cua cart la: " + sum);
     }
-
 }

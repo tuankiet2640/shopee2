@@ -6,8 +6,5 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Seller extends User {
-    private static final Scanner scanner = new Scanner(System.in);
-
-
 
 }

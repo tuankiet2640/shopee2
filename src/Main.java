@@ -15,9 +15,7 @@ public class Main {
 
         SellerService.addProduct();
 
-
         CustomerService.displayPage();
-
 
         CartService.addToCart();
         CartService.displayCart();

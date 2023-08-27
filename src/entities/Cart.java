@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Cart {
     private static final List<CartItem> cartitems = new ArrayList<>();
-
     private long totalPrice;
     CartItem cartItem = new CartItem();
 
