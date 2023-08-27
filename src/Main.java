@@ -5,15 +5,21 @@ import entities.Seller;
 import service.CartService;
 import service.CustomerService;
 import service.ProductService;
+import service.SellerService;
 
 public class Main {
     public static void main(String[] args) {
 
         ProductService.taoDanhSachSanPham();
-        ProductService.inRaSanPham();
+//      ProductService.inRaSanPham();
+
+        SellerService.addProduct();
+
+
+        CustomerService.displayPage();
+
 
         CartService.addToCart();
-//        CustomerService.displayPage(3,40);
         CartService.displayCart();
         CartService.getTotalPriceForCart();
     }
