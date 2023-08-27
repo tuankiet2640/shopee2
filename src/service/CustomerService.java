@@ -36,6 +36,9 @@ public class CustomerService {
             System.out.println("nhap khong hop le");
         }
         if (indexStart<products.size()){
+            if (indexEnd>products.size()){
+                indexEnd=products.size();
+            }
             for (int index=indexStart;index<indexEnd;index++){
                 System.out.println(products.get(index));
             }
