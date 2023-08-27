@@ -1,5 +1,6 @@
 package entities;
 
+import service.CustomerService;
 import service.ProductService;
 
 import java.util.List;
@@ -8,14 +9,16 @@ public class CartItem {
 
     private static final ProductService productService= new ProductService();
     private final static List<Product> products = productService.getList();
+    public static service.CustomerService CustomerService;
 
     private Product product = new Product();
     private int quantity;
-    private final long subtotal =  product.getPrice()*quantity;
+    private long subtotal;
 
     public CartItem(String productName, int quantity) {
         product=getProductByName(productName);
         this.quantity=quantity;
+        this.subtotal=product.getPrice()*quantity;
     }
     public CartItem() {
 

@@ -9,7 +9,11 @@ public class Cart {
     private static final List<CartItem> cartitems = new ArrayList<>();
 
     private long totalPrice;
+    CartItem cartItem = new CartItem();
 
+    public CartItem getCartItem() {
+        return cartItem;
+    }
 
     public Cart() {
     }
@@ -17,6 +21,7 @@ public class Cart {
     @Override
     public String toString() {
         return "Cart{" +
+                cartItem +
                 "totalPrice=" + totalPrice +
                 '}';
     }

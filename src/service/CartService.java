@@ -18,8 +18,8 @@ public class CartService {
 
 
     public static void addToCart(){
-        String addingToCart="Y";
-        while (addingToCart=="Y") {
+        char addingToCart='Y';
+        while (addingToCart=='Y') {
             System.out.println("nhap san pham can them vao gio hang ");
             String productName = scanner.nextLine();
 
@@ -28,18 +28,24 @@ public class CartService {
             scanner.nextLine();
 
             CartItem cartitem = new CartItem(productName, quantity);
+            cartitems.add(cartitem);
 
             System.out.println("ban co them tiep san pham? Y/N");
-            addingToCart=scanner.nextLine();
+            addingToCart=scanner.next().charAt(0);
+            scanner.nextLine();
         }
     }
-    public static long getTotalPrice(){
+    public static void displayCart(){
+        for (CartItem cartitem : cartitems){
+            System.out.println(cartitem);
+        }
+    }
+    public static void getTotalPriceForCart(){
         long sum=0L;
         for (CartItem cartitem : cartitems){
             sum+= cartitem.getSubtotal();
         }
-
-        return sum;
+        System.out.println(sum);
     }
 
 }

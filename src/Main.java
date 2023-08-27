@@ -1,3 +1,4 @@
+import entities.CartItem;
 import entities.Customer;
 import entities.Product;
 import entities.Seller;
@@ -12,8 +13,8 @@ public class Main {
         ProductService.inRaSanPham();
 
         CartService.addToCart();
-//        Seller.addProduct();
-//        ProductService.inRaSanPham();
-        CustomerService.displayPage(3,40);
+//        CustomerService.displayPage(3,40);
+        CartService.displayCart();
+        CartService.getTotalPriceForCart();
     }
 }
