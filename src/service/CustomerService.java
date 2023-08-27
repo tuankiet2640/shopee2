@@ -17,31 +17,39 @@ public class CustomerService {
 
     public static void displayPage(){
 
-        System.out.println("nhap so trang= ");
-        int pageNumber= scanner.nextInt();
-        scanner.nextLine();
+        char displayPage='Y';
+        while (displayPage=='Y') {
+            System.out.println("nhap so trang= ");
+            int pageNumber = scanner.nextInt();
+            scanner.nextLine();
 
-        System.out.println("nhap size cua trang");
-        int pageSize= scanner.nextInt();
-        scanner.nextLine();
+            System.out.println("nhap size cua trang");
+            int pageSize = scanner.nextInt();
+            scanner.nextLine();
 
 
-        int indexStart;
-        int indexEnd;
+            int indexStart;
+            int indexEnd;
 
-        indexStart= (pageNumber-1)*pageSize;
-        indexEnd= indexStart+pageSize;
+            indexStart = (pageNumber - 1) * pageSize;
+            indexEnd = indexStart + pageSize;
 
-        if(indexStart>products.size()-1){
-            System.out.println("nhap khong hop le");
-        }
-        if (indexStart<products.size()){
-            if (indexEnd>products.size()){
-                indexEnd=products.size();
+            if (indexStart > products.size() - 1) {
+                System.out.println("nhap khong hop le");
             }
-            for (int index=indexStart;index<indexEnd;index++){
-                System.out.println(products.get(index));
+            if (indexStart < products.size()) {
+                if (indexEnd > products.size()) {
+                    indexEnd = products.size();
+                }
+                for (int index = indexStart; index < indexEnd; index++) {
+                    System.out.println(products.get(index));
+                }
+
             }
+
+            System.out.println("ban co xem tiep? Y/N");
+            displayPage=scanner.next().charAt(0);
+            scanner.nextLine();
         }
     }
 
