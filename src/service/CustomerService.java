@@ -44,7 +44,6 @@ public class CustomerService {
                 for (int index = indexStart; index < indexEnd; index++) {
                     System.out.println(products.get(index));
                 }
-
             }
 
             System.out.println("ban co xem tiep? Y/N");

@@ -12,10 +12,7 @@ import java.util.Scanner;
 public class CartService {
 
     private static final List<CartItem> cartitems = new ArrayList<>();
-
-    private final Customer customer = new Customer();
     private static final Scanner scanner = new Scanner(System.in);
-
 
     public static void addToCart(){
         char addingToCart='Y';

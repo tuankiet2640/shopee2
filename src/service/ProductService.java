@@ -23,8 +23,6 @@ public class ProductService {
         }
     }
 
-
-
     public static List<Product> getList() {
         return products;
     }
