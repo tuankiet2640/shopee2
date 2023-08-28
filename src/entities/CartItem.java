@@ -18,9 +18,7 @@ public class CartItem {
         this.subtotal=product.getPrice()*quantity;
     }
     public CartItem() {
-
     }
-
     public Product getProductByName(String productName) {
         for (Product product : products) {
             if (product.getProductName().equals(productName)) {
