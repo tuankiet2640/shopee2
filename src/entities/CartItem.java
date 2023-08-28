@@ -7,10 +7,7 @@ import java.util.List;
 
 public class CartItem {
 
-    private static final ProductService productService= new ProductService();
-    private final static List<Product> products = productService.getList();
-    public static service.CustomerService CustomerService;
-
+    private final static List<Product> products = ProductService.getList();
     private Product product = new Product();
     private int quantity;
     private long subtotal;
