@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class CartService {
 
-    private static final List<CartItem> cartitems = new ArrayList<>();
+    private static final List<CartItem> cart = new ArrayList<>();
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void addToCart(){
@@ -25,7 +25,7 @@ public class CartService {
             scanner.nextLine();
 
             CartItem cartitem = new CartItem(productName, quantity);
-            cartitems.add(cartitem);
+            cart.add(cartitem);
 
             System.out.println("ban co them tiep san pham? Y/N");
             addingToCart=scanner.next().charAt(0);
@@ -33,13 +33,13 @@ public class CartService {
         }
     }
     public static void displayCart(){
-        for (CartItem cartitem : cartitems){
+        for (CartItem cartitem : cart){
             System.out.println(cartitem);
         }
     }
     public static void getTotalPriceForCart(){
         long sum=0L;
-        for (CartItem cartitem : cartitems){
+        for (CartItem cartitem : cart){
             sum+= cartitem.getSubtotal();
         }
         System.out.println("tong gia cua cart la: " + sum);

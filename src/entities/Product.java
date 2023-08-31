@@ -1,10 +1,16 @@
 package entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Product {
+    private int productId;
     private String productName;
     private  long price;
+    private List<Variant> variants = new ArrayList<>();
+    private int variantId;
+
 
 
     public String getProductName() {
@@ -18,7 +24,8 @@ public class Product {
     public Product() {
     }
 
-    public Product(String productName, long price) {
+    public Product(int productId,String productName, long price) {
+        this.productId= productId;
         this.productName=productName;                     
         this.price=price;
     }
@@ -29,6 +36,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return productName+" " + price ;
+        return productName + " " + price;
     }
 }

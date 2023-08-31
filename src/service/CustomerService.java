@@ -19,6 +19,7 @@ public class CustomerService {
 
         char displayPage='Y';
         while (displayPage=='Y') {
+
             System.out.println("nhap so trang= ");
             int pageNumber = scanner.nextInt();
             scanner.nextLine();

@@ -8,18 +8,19 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class ProductService {
     protected static List<Product> products = new ArrayList<Product>();
-    private static int productNumber=0;
-    private final static String productName="sanpham";
+    private final static String productName = "sanpham";
+    private static int productIdSetter = 20000;
+    private static int productNumber = 0;
 
-    public static void taoDanhSachSanPham(){
-
-        for (int index=0; index<100; index++){
+    public static void taoDanhSachSanPham() {
+        for (int index = 0; index < 100; index++) {
             themMotSanPham();
         }
     }
-    public static void inRaSanPham(){
-        for (int index=0;index<products.size();index++){
-        System.out.println(products.get(index));
+
+    public static void inRaSanPham() {
+        for (int index = 0; index < products.size(); index++) {
+            System.out.println(products.get(index));
         }
     }
 
@@ -31,28 +32,39 @@ public class ProductService {
         products = product;
     }
 
-    private static void themMotSanPham(){
-        String productName= addProductName();
+    private static void themMotSanPham() {
+
+        String productName = addProductName();
         long price = setPrice();
-        Product product = new Product(productName,price);
+        int productId = productIdSetter();
+        Product product = new Product(productId, productName, price);
         products.add(product);
+    }
+
+    //productId
+    protected static int productIdSetter() {
+        return productIdSetter++;
     }
 
     //cho tên tự tăng
     public static String addProductName() {
         productNumber++;
-        return productName+productNumber;
+        return productName + productNumber;
+    }
+
+    //create variant
+    private static void createVariant() {
+        final String[] size = {"S", "M", "'L','X'", "XL", "XXL"};
+        final String[] color = {"black", "white", "red",
+                "orange", "green", "blue", "maroon", "grey",
+                "lime", "yellow"};
+
+        ThreadLocalRandom.current().nextInt(0, 3);
+
     }
 
     //random price
     public static long setPrice() {
-        return randomPrice();
+        return ThreadLocalRandom.current().nextLong(10, 10000);
     }
-    private static long randomPrice(){
-        return nextLongBetween(10, 1000);
-    }
-    public static long nextLongBetween(long min, long max) {
-        return ThreadLocalRandom.current().nextLong(min, max);
-    }
-
 }

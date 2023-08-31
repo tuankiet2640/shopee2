@@ -6,7 +6,7 @@ import service.ProductService;
 import java.util.List;
 
 public class CartItem {
-
+    private int cartItemId;
     private final static List<Product> products = ProductService.getList();
     private Product product = new Product();
     private int quantity;
