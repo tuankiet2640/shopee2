@@ -6,6 +6,19 @@ public class Variant {
     private String color;
 
 
+    public Variant(int variantId, String size, String color) {
+        this.variantId = variantId;
+        this.size = size;
+        this.color = color;
+    }
+
+    @Override
+    public String toString() {
+        return "Variant{" +
+                "variantId=" + variantId +
+                '}';
+    }
+
     public Variant() {
     }
 

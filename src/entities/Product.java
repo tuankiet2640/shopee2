@@ -38,8 +38,16 @@ public class Product {
         this.price = price;
     }
 
+    public void setVariants(List<Variant> variants) {
+        this.variants = variants;
+    }
+
     @Override
     public String toString() {
-        return productName + " " + price;
+        return "Product{" +
+                "productName='" + productName + '\'' +
+                ", price=" + price +
+                ", variants=" + variants +
+                '}';
     }
 }

@@ -11,6 +11,7 @@ public class ProductService {
     protected static List<Product> products = new ArrayList<>();
     private static int productIdSetter = 20000;
     private static int productNumber = 0;
+    private static int variantId=30000;
 
     public static void taoDanhSachSanPham() {
         for (int index = 0; index < 100; index++) {
@@ -34,6 +35,7 @@ public class ProductService {
         long price = setPrice();
         int productId = productIdSetter();
         Product product = new Product(productId, productName, price);
+        createListVariant(product);
         products.add(product);
     }
 
@@ -49,24 +51,27 @@ public class ProductService {
     }
 
     //create variant
-    private static Product createListVariant(Product product) {
+    private static void createListVariant(Product product) {
 
         List<Variant> variants = product.getVariants();
 
-        final String[] size = {"S", "M", "'L','X'", "XL", "XXL"};
+        final String[] size = {"S", "M", "L", "XL"};
 
-        final String[] color = {"black", "white", "red",
-                "orange", "green", "blue", "maroon", "grey",
-                "lime", "yellow"};
-        int randomColorSize =ThreadLocalRandom.current().nextInt(0, color.length);
+        final String[] color = {"black", "white", "red"};
 
+        int randomColorSize =ThreadLocalRandom.current().nextInt(1, color.length);
+        int variantId;
         for (int sizeIndex=0;sizeIndex<size.length;sizeIndex++){
             for (int colorIndex=0;colorIndex<randomColorSize;colorIndex++){
-
+                variantId=variantIdSetter();
+                Variant variant= new Variant(variantId,size[sizeIndex],color[colorIndex]);
+                variants.add(variant);
             }
         }
-        ThreadLocalRandom.current().nextInt(0, 3);
-        return null;
+        product.setVariants(variants);
+    }
+    private static int variantIdSetter(){
+        return variantId++;
     }
     public static Product getProductByName(String productName) {
         for (Product product : products) {

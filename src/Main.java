@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
 
         ProductService.taoDanhSachSanPham();
-//      ProductService.inRaSanPham();
+      ProductService.inRaSanPham();
 
 //        SellerService.addProduct();
 //        CustomerService.displayPage();
