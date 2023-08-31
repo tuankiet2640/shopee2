@@ -15,7 +15,8 @@ public class Variant {
     @Override
     public String toString() {
         return "Variant{" +
-                "variantId=" + variantId +
+                "size='" + size + '\'' +
+                ", color='" + color + '\'' +
                 '}';
     }
 
