@@ -24,7 +24,11 @@ public class Product {
     public Product() {
     }
 
-    public Product(int productId,String productName, long price) {
+    public List<Variant> getVariants() {
+        return variants;
+    }
+
+    public Product(int productId, String productName, long price) {
         this.productId= productId;
         this.productName=productName;                     
         this.price=price;

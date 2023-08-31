@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CartService {
+    private final static List<Product> products = ProductService.getList();
+
 
     private static final List<CartItem> cart = new ArrayList<>();
     private static final Scanner scanner = new Scanner(System.in);
@@ -32,6 +34,8 @@ public class CartService {
             scanner.nextLine();
         }
     }
+
+
     public static void displayCart(){
         for (CartItem cartitem : cart){
             System.out.println(cartitem);

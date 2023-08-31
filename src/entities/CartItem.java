@@ -6,26 +6,17 @@ import service.ProductService;
 import java.util.List;
 
 public class CartItem {
+
     private int cartItemId;
-    private final static List<Product> products = ProductService.getList();
     private Product product = new Product();
     private int quantity;
     private long subtotal;
-
     public CartItem(String productName, int quantity) {
-        product=getProductByName(productName);
+        product=ProductService.getProductByName(productName);
         this.quantity=quantity;
         this.subtotal=product.getPrice()*quantity;
     }
     public CartItem() {
-    }
-    public Product getProductByName(String productName) {
-        for (Product product : products) {
-            if (product.getProductName().equals(productName)) {
-                return product;
-            }
-        }
-        return null;
     }
 
     @Override

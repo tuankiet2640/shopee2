@@ -8,4 +8,28 @@ public class Variant {
 
     public Variant() {
     }
+
+    public int getVariantId() {
+        return variantId;
+    }
+
+    public void setVariantId(int variantId) {
+        this.variantId = variantId;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 }
