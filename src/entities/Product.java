@@ -9,7 +9,6 @@ public class Product {
     private String productName;
     private  long price;
     private List<Variant> variants = new ArrayList<>();
-    private int variantId;
 
 
 
