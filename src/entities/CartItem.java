@@ -11,7 +11,7 @@ public class CartItem {
     private Product product = new Product();
     private int quantity;
     private long subtotal;
-    public CartItem(String productName, int quantity) {
+    public CartItem(String productName, Variant variant, int quantity) {
         product=ProductService.getProductByName(productName);
         this.quantity=quantity;
         this.subtotal=product.getPrice()*quantity;

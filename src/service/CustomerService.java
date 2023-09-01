@@ -1,19 +1,26 @@
 package service;
 
-import entities.Cart;
-import entities.CartItem;
-import entities.Product;
+import entities.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class CustomerService {
+    private final static List<Customer> customers = new ArrayList<>();
     private final static List<Product> products = ProductService.getList();
-    private static final Cart cart= new Cart();
-
+    private static final List<CartItem> cart= Cart.getCart();
     private static final Scanner scanner= new Scanner(System.in);
 
+
+    public static void register(){
+        int customerId= 1999;
+        String username= "kiet";
+        String password= "123456";
+        long balance = 100000;
+        Customer customer = new Customer(customerId,username,password,balance);
+        customers.add(customer);
+    }
 
     public static void displayPage(){
 
@@ -52,5 +59,32 @@ public class CustomerService {
             scanner.nextLine();
         }
     }
+
+    public static void addToCart(){
+
+            System.out.println("nhap san pham can them vao gio hang ");
+            String productName = scanner.nextLine();
+
+        System.out.println("san pham nay bao gom cac size va mau sau:");
+        ProductService.displayVariant(productName);
+
+       System.out.println("chọn một size: ");
+       String size= scanner.nextLine();
+
+        System.out.println("chọn một màu: ");
+        String color= scanner.nextLine();
+
+        Variant variant = ProductService.findVariant(productName, size,color);
+
+        System.out.println("nhap so luong ");
+            int quantity = scanner.nextInt();
+            scanner.nextLine();
+
+            CartItem cartitem = new CartItem(productName,variant, quantity);
+            cart.add(cartitem);
+
+    }
+
+
 
 }

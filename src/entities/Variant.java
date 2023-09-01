@@ -46,4 +46,6 @@ public class Variant {
     public void setColor(String color) {
         this.color = color;
     }
+
+
 }

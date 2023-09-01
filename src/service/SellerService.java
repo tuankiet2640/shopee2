@@ -23,7 +23,7 @@ public class SellerService {
 
             int productId= ProductService.productIdSetter();
             Product product = new Product(productId, productName, price);
-
+            ProductService.createListVariant(product);
             products.add(product);
         } catch (Exception e) {
             System.out.println("nhap  ko hop le");

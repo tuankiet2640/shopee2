@@ -6,7 +6,6 @@ import java.util.List;
 import service.CartService;
 
 public class Customer extends User{
-    private int userId;
     private long balance;
     private Cart cart;
     public Customer(int userId, String username, String password, long balance) {

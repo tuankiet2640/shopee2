@@ -18,7 +18,8 @@ public class Main {
 //        SellerService.addProduct();
 //        CustomerService.displayPage();
 
-//        CartService.addToCart();
+
+        CustomerService.addToCart();
 //        CartService.displayCart();
 //        CartService.getTotalPriceForCart();
     }

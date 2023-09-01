@@ -14,7 +14,7 @@ public class ProductService {
     private static int variantId=30000;
 
     public static void taoDanhSachSanPham() {
-        for (int index = 0; index < 100; index++) {
+        for (int index = 0; index < 5; index++) {
             themMotSanPham();
         }
     }
@@ -51,13 +51,13 @@ public class ProductService {
     }
 
     //create variant
-    private static void createListVariant(Product product) {
+    public static void createListVariant(Product product) {
 
         List<Variant> variants = product.getVariants();
 
         final String[] size = {"S", "M", "L", "XL"};
 
-        final String[] color = {"black", "white", "red"};
+        final String[] color = {"black", "white", "red","gray"};
 
         int randomColorSize =ThreadLocalRandom.current().nextInt(1, color.length);
         int variantId;
@@ -79,6 +79,40 @@ public class ProductService {
                 return product;
             }
         }
+        return null;
+    }
+
+    //display Variant
+    public static void displayVariant(String productName){
+        Product product = getProductByName(productName);
+
+        ArrayList<String> sizeList= new ArrayList<>();
+        ArrayList<String> colorList= new ArrayList<>();
+
+        if(product != null) {
+
+            List<Variant> variants= product.getVariants();
+            sizeList.add(variants.get(0).getSize());
+            colorList.add(variants.get(0).getColor());
+
+            for (int index=1; index<variants.size();index++){
+
+                if (!sizeList.contains(variants.get(index).getSize())) {
+                    sizeList.add(variants.get(index).getSize());
+                }
+                if (!colorList.contains(variants.get(index).getColor())){
+                    colorList.add(variants.get(index).getColor());
+                }
+
+            }
+        }
+        System.out.println(sizeList);
+        System.out.println(colorList);
+    }
+    //tim variant
+    public static Variant findVariant(String productName, String size, String color){
+        Product product = getProductByName(productName);
+
         return null;
     }
 
