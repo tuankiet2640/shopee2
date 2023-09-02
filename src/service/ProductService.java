@@ -57,10 +57,11 @@ public class ProductService {
 
         final String[] size = {"S", "M", "L", "XL"};
 
-        final String[] color = {"black", "white", "red","gray"};
+        final String[] color = {"black", "white", "red","gray","blue", "green"};
 
         int randomColorSize =ThreadLocalRandom.current().nextInt(1, color.length);
         int variantId;
+
         for (int sizeIndex=0;sizeIndex<size.length;sizeIndex++){
             for (int colorIndex=0;colorIndex<randomColorSize;colorIndex++){
                 variantId=variantIdSetter();
@@ -73,6 +74,8 @@ public class ProductService {
     private static int variantIdSetter(){
         return variantId++;
     }
+
+    //lấy product có thuộc tính productName là productName
     public static Product getProductByName(String productName) {
         for (Product product : products) {
             if (product.getProductName().equals(productName)) {
@@ -92,6 +95,7 @@ public class ProductService {
         if(product != null) {
 
             List<Variant> variants= product.getVariants();
+
             sizeList.add(variants.get(0).getSize());
             colorList.add(variants.get(0).getColor());
 
@@ -109,10 +113,18 @@ public class ProductService {
         System.out.println(sizeList);
         System.out.println(colorList);
     }
+
     //tim variant
     public static Variant findVariant(String productName, String size, String color){
         Product product = getProductByName(productName);
+        assert product != null;
+        List<Variant> variants= product.getVariants();
 
+        for (Variant variant: variants){
+            if ((variant.getSize()==size)&&(variant.getColor()==color)){
+                return variant;
+            }
+        }
         return null;
     }
 

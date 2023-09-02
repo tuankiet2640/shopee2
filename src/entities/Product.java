@@ -46,6 +46,7 @@ public class Product {
         return "Product{" +
                 "productName='" + productName + '\'' +
                 ", price=" + price +
+                ", variants= "+ variants +
                 '}';
     }
 }

@@ -4,12 +4,28 @@ public class Variant {
     private int variantId;
     private String size;
     private String color;
+    private long variantPrice;
 
 
     public Variant(int variantId, String size, String color) {
         this.variantId = variantId;
         this.size = size;
         this.color = color;
+    }
+
+    public Variant(int variantId, String size, String color, long variantPrice) {
+        this.variantId = variantId;
+        this.size = size;
+        this.color = color;
+        this.variantPrice = variantPrice;
+    }
+
+    public long getVariantPrice() {
+        return variantPrice;
+    }
+
+    public void setVariantPrice(long variantPrice) {
+        this.variantPrice = variantPrice;
     }
 
     @Override
