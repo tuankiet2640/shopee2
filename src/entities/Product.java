@@ -9,6 +9,7 @@ public class Product {
     private String productName;
     private  long price;
     private List<Variant> variants = new ArrayList<>();
+    private int variantId;
 
 
 
@@ -21,6 +22,30 @@ public class Product {
     }
 
     public Product() {
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
+    }
+
+    public int getVariantId() {
+        return variantId;
+    }
+
+    public void setVariantId(int variantId) {
+        this.variantId = variantId;
     }
 
     public List<Variant> getVariants() {
@@ -46,7 +71,6 @@ public class Product {
         return "Product{" +
                 "productName='" + productName + '\'' +
                 ", price=" + price +
-                ", variants= "+ variants +
                 '}';
     }
 }

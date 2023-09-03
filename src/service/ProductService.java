@@ -1,10 +1,12 @@
 package service;
 
+import entities.CartItem;
 import entities.Product;
 import entities.Variant;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class ProductService {
@@ -14,7 +16,7 @@ public class ProductService {
     private static int variantId=30000;
 
     public static void taoDanhSachSanPham() {
-        for (int index = 0; index < 5; index++) {
+        for (int index = 0; index < 100; index++) {
             themMotSanPham();
         }
     }
@@ -114,15 +116,39 @@ public class ProductService {
         System.out.println(colorList);
     }
 
-    //tim variant
+    //tim variant va hien thi
     public static Variant findVariant(String productName, String size, String color){
         Product product = getProductByName(productName);
         assert product != null;
         List<Variant> variants= product.getVariants();
 
         for (Variant variant: variants){
-            if ((variant.getSize()==size)&&(variant.getColor()==color)){
+            if ((Objects.equals(variant.getSize(), size))&&(Objects.equals(variant.getColor(), color))){
                 return variant;
+            }
+        }
+        return null;
+    }
+    public static String displayProductVariant(int variantId){
+
+        Product product = findProductByVariantId(variantId);
+        List<Variant> variants = product.getVariants();
+
+        for (Variant variant: variants){
+            if (variant.getVariantId()==variantId){
+                return variant.getSize()+ " "+ variant.getColor();
+            }
+        }
+        return "";
+    }
+
+    //find product by variant id
+    public static Product findProductByVariantId(int variantId){
+        for (Product product: products){
+            List<Variant> variants = product.getVariants();
+            for (Variant variant: variants)
+            if (variant.getVariantId()==variantId){
+                return product;
             }
         }
         return null;

@@ -13,6 +13,13 @@ public class Customer extends User{
         this.balance = balance;
     }
 
+    public String getPassword(){
+        return this.password;
+    }
+    public String getUsername(){
+        return this.username;
+    }
+
     public int getUserId() {
         return userId;
     }

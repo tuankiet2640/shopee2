@@ -6,12 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
-    private static  List<CartItem> cart = new ArrayList<>();
+    private static  List<CartItem> cartItems = new ArrayList<>();
     private int cartId;
     private long totalPrice;
 
+    public Cart(int cartId,List<CartItem> cartItems, long totalPrice) {
+        this.cartId = cartId;
+        this.cartItems = cartItems;
+        this.totalPrice = totalPrice;
+    }
+
     public static List<CartItem> getCart() {
-        return cart;
+        return cartItems;
     }
 
     public Cart() {
@@ -20,7 +26,7 @@ public class Cart {
     @Override
     public String toString() {
         return "Cart{" +
-                cart +
+                cartItems +
                 "totalPrice=" + totalPrice +
                 '}';
     }
@@ -29,12 +35,12 @@ public class Cart {
         return totalPrice;
     }
 
-    public static List<CartItem> getCartitems() {
-        return cart;
+    public static List<CartItem> getCartItems() {
+        return cartItems;
     }
 
     public static void setCartitems(List<CartItem> cartitems) {
-        Cart.cart = cartitems;
+        Cart.cartItems = cartitems;
     }
 
     public int getCartId() {

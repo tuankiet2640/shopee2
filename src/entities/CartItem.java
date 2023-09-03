@@ -5,16 +5,20 @@ import service.ProductService;
 
 import java.util.List;
 
+import static service.ProductService.displayProductVariant;
+
 public class CartItem {
 
     private int cartItemId;
     private Product product = new Product();
     private int quantity;
     private long subtotal;
-    public CartItem(String productName, Variant variant, int quantity) {
+    private int variantId;
+    public CartItem(String productName, Variant variant, int quantity, int variantId) {
         product=ProductService.getProductByName(productName);
         this.quantity=quantity;
         this.subtotal=product.getPrice()*quantity;
+        this.variantId=variantId;
     }
     public CartItem() {
     }
@@ -22,9 +26,10 @@ public class CartItem {
     @Override
     public String toString() {
         return "CartItem{" +
-                "product=" + product +
+                "product=" + product.getProductName() +
                 ", quantity=" + quantity +
                 ", subtotal=" + subtotal +
+                ", variant= "+ ProductService.displayProductVariant(variantId) +
                 '}';
     }
 
