@@ -14,8 +14,8 @@ public class CartItem {
     private int quantity;
     private long subtotal;
     private int variantId;
-    public CartItem(String productName, Variant variant, int quantity, int variantId) {
-        product=ProductService.getProductByName(productName);
+    public CartItem(Product product, int quantity, int variantId) {
+        this.product=product;
         this.quantity=quantity;
         this.subtotal=product.getPrice()*quantity;
         this.variantId=variantId;
@@ -25,7 +25,7 @@ public class CartItem {
 
     @Override
     public String toString() {
-        return "CartItem{" +
+        return "" +
                 "product=" + product.getProductName() +
                 ", quantity=" + quantity +
                 ", subtotal=" + subtotal +
@@ -35,6 +35,26 @@ public class CartItem {
 
     public Product getProduct() {
         return product;
+    }
+
+    public int getCartItemId() {
+        return cartItemId;
+    }
+
+    public void setCartItemId(int cartItemId) {
+        this.cartItemId = cartItemId;
+    }
+
+    public void setSubtotal(long subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public int getVariantId() {
+        return variantId;
+    }
+
+    public void setVariantId(int variantId) {
+        this.variantId = variantId;
     }
 
     public void setProduct(Product product) {

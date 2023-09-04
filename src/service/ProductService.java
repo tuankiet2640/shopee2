@@ -143,12 +143,13 @@ public class ProductService {
     }
 
     //find product by variant id
-    public static Product findProductByVariantId(int variantId){
-        for (Product product: products){
+    public static Product findProductByVariantId(int variantId) {
+        for (Product product : products) {
             List<Variant> variants = product.getVariants();
-            for (Variant variant: variants)
-            if (variant.getVariantId()==variantId){
-                return product;
+            for (Variant variant : variants) {
+                if (variant.getVariantId() == variantId) {
+                    return product;
+                }
             }
         }
         return null;

@@ -23,7 +23,10 @@ public class CustomerService {
         String password= scanner.nextLine();
 
         long balance = 100000;
-        Customer customer = new Customer(customerId,username,password,balance);
+
+        Address address= addAddress();
+
+        Customer customer = new Customer(customerId,username,password,balance, address);
         customers.add(customer);
     }
 
@@ -55,7 +58,7 @@ public class CustomerService {
 
             char menu;
             while (true) {
-            System.out.println("1 de xem san pham 2 de them vao gio hang 3 de xem lai don hang 4 de thoat");
+            System.out.println("1 de xem san pham 2 de them vao gio hang 3 de xem lai don hang 4 de chot order 5 de thoat");
             menu = scanner.next().charAt(0);
             scanner.nextLine();
 
@@ -70,6 +73,9 @@ public class CustomerService {
                     CartService.displayCart(customer);
                     break;
                 case '4':
+                    CartService.order(customer);
+                    break;
+                case '5':
                     scanner.close();
                     System.exit(0);
 
@@ -146,10 +152,12 @@ public class CustomerService {
             int quantity = scanner.nextInt();
             scanner.nextLine();
 
+            Product product = ProductService.getProductByName(productName);
+            if (product != null) {
+                CartItem cartitem = new CartItem(product, quantity,variantId);
+                cartItems.add(cartitem);
 
-            CartItem cartitem = new CartItem(productName,variant, quantity,variantId);
-            cartItems.add(cartitem);
-
+            }
             System.out.println("ban co them tiep? Y/N");
             isAddingToCard=scanner.next().charAt(0);
             scanner.nextLine();
@@ -160,6 +168,18 @@ public class CustomerService {
         customer.setCart(cart);
     }
 
+    public static Address addAddress(){
+        Address address= new Address("ho chi minh", "nguyen van troi");
+        return address;
+    }
 
 
+    public static Customer getCustomerById(int customerId) {
+        for (Customer customer: customers){
+            if (customer.getUserId()==customerId) {
+                return customer;
+            }
+        }
+        return null;
+    }
 }

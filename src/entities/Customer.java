@@ -8,9 +8,19 @@ import service.CartService;
 public class Customer extends User{
     private long balance;
     private Cart cart;
-    public Customer(int userId, String username, String password, long balance) {
+    private Address address;
+    public Customer(int userId, String username, String password, long balance, Address address) {
         super(userId, username, password);
         this.balance = balance;
+        this.address=address;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getPassword(){
