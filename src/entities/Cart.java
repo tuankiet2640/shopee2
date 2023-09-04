@@ -16,6 +16,7 @@ public class Cart {
         this.totalPrice = totalPrice;
     }
 
+
     public static List<CartItem> getCart() {
         return cartItems;
     }

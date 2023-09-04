@@ -69,7 +69,9 @@ public class CartService {
         }
     }
     private static void orderDone(Customer customer){
-        customer.setCart(null);
+        Cart cart = new Cart(customer.getCart().getCartId(), new ArrayList<>(),0);
+        customer.setCart(cart);
+        CustomerService.menu(customer);
     }
     private static int orderIdSetter(){
         return orderId++;
