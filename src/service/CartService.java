@@ -4,6 +4,8 @@ import entities.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
+
 import entities.Order;
 import entities.OrderLine;
 
@@ -22,6 +24,7 @@ public class CartService {
 
         Cart cart = customer.getCart();
         List<CartItem> cartItems= Cart.getCartItems();
+
         for (CartItem cartitem : cartItems){
             System.out.println(cartitem);
         }
@@ -33,6 +36,16 @@ public class CartService {
             sum+= cartitem.getSubtotal();
         }
         return sum;
+    }
+
+    //adding price to variant
+    public static long addingPriceToVariant(Product product, int variantId){
+        Variant variant=  ProductService.findVariantByVariantId(product, variantId);
+        if (variant!=null) {
+            long variantPrice = variant.getVariantPrice() + product.getPrice();
+            return variantPrice;
+        }
+        return product.getPrice();
     }
 
     //order

@@ -1,5 +1,6 @@
 package entities;
 
+import service.CartService;
 import service.CustomerService;
 import service.ProductService;
 
@@ -17,8 +18,8 @@ public class CartItem {
     public CartItem(Product product, int quantity, int variantId) {
         this.product=product;
         this.quantity=quantity;
-        this.subtotal=product.getPrice()*quantity;
         this.variantId=variantId;
+        this.subtotal= CartService.addingPriceToVariant(product, variantId);
     }
     public CartItem() {
     }

@@ -66,13 +66,21 @@ public class ProductService {
 
         for (int sizeIndex=0;sizeIndex<size.length;sizeIndex++){
             for (int colorIndex=0;colorIndex<randomColorSize;colorIndex++){
+
                 variantId=variantIdSetter();
                 Variant variant= new Variant(variantId,size[sizeIndex],color[colorIndex]);
+                variant.setVariantPrice(randomPriceForVariants());
                 variants.add(variant);
             }
         }
         product.setVariants(variants);
     }
+
+    //random price for variant
+    private static long randomPriceForVariants(){
+        return ThreadLocalRandom.current().nextLong(-10, 10);
+    }
+
     private static int variantIdSetter(){
         return variantId++;
     }
@@ -155,8 +163,19 @@ public class ProductService {
         return null;
     }
 
+    //find variant by variant ID
+    public static Variant findVariantByVariantId(Product product, int variantId){
+        List<Variant> variants = product.getVariants();
+        for (Variant variant: variants){
+            if (variant.getVariantId()==variantId){
+                return variant;
+            }
+        }
+        return null;
+    }
+
     //random price
     public static long setPrice() {
-        return ThreadLocalRandom.current().nextLong(10, 10000);
+        return ThreadLocalRandom.current().nextLong(100, 10000);
     }
 }
