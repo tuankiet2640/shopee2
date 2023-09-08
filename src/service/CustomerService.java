@@ -118,6 +118,8 @@ public class CustomerService {
                 }
                 for (int index = indexStart; index < indexEnd; index++) {
                     System.out.println(products.get(index));
+                    ProductService.displayVariant(products.get(index).getProductName());
+
                 }
             }
 

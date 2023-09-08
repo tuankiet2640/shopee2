@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Cart {
     private static  List<CartItem> cartItems = new ArrayList<>();
-    private int cartId;
+    private int cartId ;
     private long totalPrice;
 
     public Cart(int cartId,List<CartItem> cartItems, long totalPrice) {
