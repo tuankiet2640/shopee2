@@ -74,7 +74,7 @@ public class CartService {
                 orderDone(customer);
                 break;
             case'N':
-                CustomerService.menu(customer);
+                CustomerService.mainMenu(customer);
                 break;
             default:
                 System.out.println("nhap khong hop le ");
@@ -84,7 +84,7 @@ public class CartService {
     private static void orderDone(Customer customer){
         Cart cart = new Cart(customer.getCart().getCartId(), new ArrayList<>(),0);
         customer.setCart(cart);
-        CustomerService.menu(customer);
+        CustomerService.mainMenu(customer);
     }
     private static int orderIdSetter(){
         return orderId++;

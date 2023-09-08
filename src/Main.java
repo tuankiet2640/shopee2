@@ -16,8 +16,7 @@ public class Main {
 //      ProductService.inRaSanPham();
 
 //        SellerService.addProduct();
+        CustomerService.run();
 
-        CustomerService.register();
-        CustomerService.login();
     }
 }

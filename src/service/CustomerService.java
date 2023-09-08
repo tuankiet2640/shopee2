@@ -12,6 +12,33 @@ public class CustomerService {
     private static final Scanner scanner= new Scanner(System.in);
     private static int cusId=78000;
 
+    //main run()
+    public static void run(){
+        char menu;
+        while (true) {
+            System.out.println("1 dang ky 2 de dang nhap 3 de thoat");
+
+            menu = scanner.next().charAt(0);
+            scanner.nextLine();
+
+            switch (menu) {
+                case '1':
+                    register();
+                    break;
+                case '2':
+                    login();
+                    break;
+                case '3':
+                    scanner.close();
+                    System.exit(0);
+
+                default:
+                    System.out.println("nhap khong hop le ");
+                    break;
+            }
+        }
+
+    }
     //dang ky
     public static void register(){
         int customerId= cusId++;
@@ -41,7 +68,7 @@ public class CustomerService {
 
         Customer customer = loggingIn(username,password);
         if (customer!=null){
-            menu(customer);
+            mainMenu(customer);
         } else System.out.println("thong tin dang nhap sai!");
 
     }
@@ -54,11 +81,11 @@ public class CustomerService {
         }
         return null;
     }
-    public static void menu(Customer customer){
+    public static void mainMenu(Customer customer){
 
             char menu;
             while (true) {
-            System.out.println("1 de xem san pham 2 de them vao gio hang 3 de xem lai don hang 4 de chot order 5 de thoat");
+            System.out.println("1 de xem san pham 2 de them vao gio hang 3 de xem lai don hang 4 de chot order 5 de dang xuat 6 de thoat");
             menu = scanner.next().charAt(0);
             scanner.nextLine();
 
@@ -76,9 +103,11 @@ public class CustomerService {
                     CartService.order(customer);
                     break;
                 case '5':
+                    run();
+                    break;
+                case '6':
                     scanner.close();
                     System.exit(0);
-
                 default:
                     System.out.println("nhap khong hop le ");
                     break;
