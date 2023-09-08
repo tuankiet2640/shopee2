@@ -15,8 +15,7 @@ public class Main {
         ProductService.taoDanhSachSanPham();
 //      ProductService.inRaSanPham();
 
-//        SellerService.addProduct();
+//      SellerService.addProduct();
         CustomerService.run();
-
     }
 }

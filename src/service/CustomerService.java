@@ -2,15 +2,24 @@ package service;
 
 import entities.*;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class CustomerService {
-    private final static List<Customer> customers = new ArrayList<>();
-    private final static List<Product> products = ProductService.getList();
-    private static final Scanner scanner= new Scanner(System.in);
-    private static int cusId=78000;
+    private final static List<Customer> customers;
+    private final static List<Product> products;
+    private static final Scanner scanner;
+    private static int cusId;
+    static {
+        customers = loadCustomerList();
+        products = ProductService.getList();
+        scanner= new Scanner(System.in);
+        cusId=78000;
+    }
 
     //main run()
     public static void run(){
@@ -59,6 +68,18 @@ public class CustomerService {
 
 
     // dang nhap
+    public static List<Customer> loadCustomerList(){
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/files/customers.txt"));
+            ois.readObject();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return customers;
+    }
     public static void login (){
         System.out.println("moi ban nhap username: ");
         String username= scanner.nextLine();
@@ -203,8 +224,6 @@ public class CustomerService {
         Address address= new Address("ho chi minh", "nguyen van troi");
         return address;
     }
-
-
     public static Customer getCustomerById(int customerId) {
         for (Customer customer: customers){
             if (customer.getUserId()==customerId) {
