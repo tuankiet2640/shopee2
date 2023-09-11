@@ -121,7 +121,7 @@ public class CustomerService {
                     CartService.displayCart(customer);
                     break;
                 case '4':
-                    CartService.order(customer);
+                    OrderService.order(customer);
                     break;
                 case '5':
                     run();
