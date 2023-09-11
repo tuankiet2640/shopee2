@@ -23,6 +23,7 @@ public class CustomerService {
 
     //main run()
     public static void run() {
+        loadCustomerList();
         char menu;
         while (true) {
             System.out.println("1 dang ky 2 de dang nhap 3 de thoat");
@@ -66,38 +67,22 @@ public class CustomerService {
         Customer customer = new Customer(customerId, username, password, balance, address);
         customers.add(customer);
 
-        try {
-            FileInputStream fis = new FileInputStream(file);
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            customers = (List<Customer>) ois.readObject();
-            fis.close();
-            ois.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (Exception e){
-            e.getMessage();
-        }
-
     }
 
 
     // dang nhap
-//    public static List<Customer> loadCustomerList(){
-//        try {
-//            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/files/customers.txt"));
-//            ois.readObject();
-//
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        } catch (ClassNotFoundException e) {
-//            throw new RuntimeException(e);
-//        }
-//        return customers;
-//    }
+    public static void loadCustomerList(){
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+            ois.readObject();
+            customers=(List<Customer>) ois.readObject();
+            ois.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public static void login() {
         System.out.println("moi ban nhap username: ");
         String username = scanner.nextLine();
