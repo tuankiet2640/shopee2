@@ -83,18 +83,28 @@ public class CustomerService implements Serializable{
 
         System.out.println("nhap username can dang ky : ");
         String username = scanner.nextLine();
+        if (!duplicateUserName(username)) {
+            System.out.println("nhap mat khau: ");
+            String password = scanner.nextLine();
 
-        System.out.println("nhap mat khau: ");
-        String password = scanner.nextLine();
+            long balance = 100000;
 
-        long balance = 100000;
+            Address address = addAddress();
 
-        Address address = addAddress();
-
-        Customer customer = new Customer(customerId, username, password, balance, address);
-        customers.add(customer);
+            Customer customer = new Customer(customerId, username, password, balance, address);
+            customers.add(customer);
+        }
 
     }
+    public static boolean duplicateUserName(String username){
+        for (Customer customer : customers) {
+            if ((customer.getUsername().equals(username))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 
     // dang nhap
