@@ -12,7 +12,6 @@ public class CustomerService implements Serializable{
     private final static List<Product> products;
     private static final Scanner scanner;
     private static int cusId;
-    private static final File file = new File("src/files/customers.txt");
 
     static {
         customers = new ArrayList<>();
@@ -93,6 +92,9 @@ public class CustomerService implements Serializable{
 
             Customer customer = new Customer(customerId, username, password, balance, address);
             customers.add(customer);
+        } else {
+            System.out.println("username da ton tai");
+            run();
         }
 
     }
