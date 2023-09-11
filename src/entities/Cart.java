@@ -2,10 +2,11 @@ package entities;
 
 import service.ProductService;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cart {
+public class Cart implements Serializable {
     private static  List<CartItem> cartItems = new ArrayList<>();
     private int cartId ;
     private long totalPrice;

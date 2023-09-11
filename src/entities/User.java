@@ -1,6 +1,8 @@
 package entities;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     protected int userId;
     protected String username;
     protected String password;

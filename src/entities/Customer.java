@@ -61,5 +61,13 @@ public class Customer extends User implements Serializable {
 
     public Customer() {
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
 

@@ -1,6 +1,8 @@
 package entities;
 
-public class Variant {
+import java.io.Serializable;
+
+public class Variant implements Serializable {
     private int variantId;
     private String size;
     private String color;

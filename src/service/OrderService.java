@@ -2,11 +2,12 @@ package service;
 
 import entities.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class OrderService {
+public class OrderService implements Serializable {
     private static int orderId=2400;
     private static final Scanner scanner = new Scanner(System.in);
 

@@ -1,6 +1,7 @@
 package service;
 import entities.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,7 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import entities.Order;
 import entities.OrderLine;
 
-public class CartService {
+public class CartService implements Serializable {
     private static int cartId = 4200;
 
     public static int addingCartId() {

@@ -4,11 +4,12 @@ import service.CartService;
 import service.CustomerService;
 import service.ProductService;
 
+import java.io.Serializable;
 import java.util.List;
 
 import static service.ProductService.displayProductVariant;
 
-public class CartItem {
+public class CartItem implements Serializable {
 
     private int cartItemId;
     private Product product = new Product();

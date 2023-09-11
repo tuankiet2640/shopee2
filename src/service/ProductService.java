@@ -4,12 +4,13 @@ import entities.CartItem;
 import entities.Product;
 import entities.Variant;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class ProductService {
+public class ProductService implements Serializable {
     protected static List<Product> products = new ArrayList<>();
     private static int productIdSetter = 20000;
     private static int productNumber = 0;

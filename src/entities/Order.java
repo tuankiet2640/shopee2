@@ -2,9 +2,10 @@ package entities;
 
 import service.CustomerService;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Order {
+public class Order implements Serializable {
     private List<OrderLine> orderLines;
     private int orderId;
     private  Address address= new Address();

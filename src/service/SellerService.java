@@ -2,11 +2,12 @@ package service;
 
 import entities.Product;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Scanner;
 
 
-public class SellerService {
+public class SellerService implements Serializable {
 
     private final static Scanner scanner = new Scanner(System.in);
     private final static List<Product> products = ProductService.getList();

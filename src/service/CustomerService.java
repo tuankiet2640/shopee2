@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CustomerService {
+public class CustomerService implements Serializable{
     private static List<Customer> customers;
     private final static List<Product> products;
     private static final Scanner scanner;
@@ -23,7 +23,7 @@ public class CustomerService {
 
     //main run()
     public static void run() {
-        loadCustomerList();
+        loadCustomers();
         char menu;
         while (true) {
             System.out.println("1 dang ky 2 de dang nhap 3 de thoat");
@@ -34,6 +34,7 @@ public class CustomerService {
             switch (menu) {
                 case '1':
                     register();
+                    writeCustomers();
                     break;
                 case '2':
                     login();
@@ -49,6 +50,32 @@ public class CustomerService {
         }
 
     }
+    public static void writeCustomers(){
+        try {
+            ObjectOutputStream oos= new ObjectOutputStream(new FileOutputStream("src/files/customers.txt"));
+            oos.writeObject(customers);
+            System.out.println("dang ky thanh cong");
+            oos.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void loadCustomers(){
+        try {
+            ObjectInputStream ois= new ObjectInputStream(new FileInputStream("src/files/customers.txt"));
+            customers= (List<Customer>)ois.readObject();
+            ois.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        for (Customer customer:customers){
+            System.out.println(customer);
+        }
+    }
+
+//
 
     //dang ky
     public static void register() {
@@ -71,18 +98,6 @@ public class CustomerService {
 
 
     // dang nhap
-    public static void loadCustomerList(){
-        try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
-            ois.readObject();
-            customers=(List<Customer>) ois.readObject();
-            ois.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
     public static void login() {
         System.out.println("moi ban nhap username: ");
         String username = scanner.nextLine();
@@ -237,5 +252,9 @@ public class CustomerService {
             }
         }
         return null;
+    }
+
+    public static List<Customer> getCustomers() {
+        return customers;
     }
 }
