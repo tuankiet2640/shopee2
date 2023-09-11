@@ -2,10 +2,11 @@ package entities;
 
 import service.ProductService;
 
+import java.io.Serializable;
 import java.util.List;
 import service.CartService;
 
-public class Customer extends User{
+public class Customer extends User implements Serializable {
     private long balance;
     private Cart cart;
     private Address address;

@@ -2,27 +2,27 @@ package service;
 
 import entities.*;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class CustomerService {
-    private final static List<Customer> customers;
+    private static List<Customer> customers;
     private final static List<Product> products;
     private static final Scanner scanner;
     private static int cusId;
+    private static final File file = new File("src/files/customers.txt");
+
     static {
-        customers = loadCustomerList();
+        customers = new ArrayList<>();
         products = ProductService.getList();
-        scanner= new Scanner(System.in);
-        cusId=78000;
+        scanner = new Scanner(System.in);
+        cusId = 78000;
     }
 
     //main run()
-    public static void run(){
+    public static void run() {
         char menu;
         while (true) {
             System.out.println("1 dang ky 2 de dang nhap 3 de thoat");
@@ -48,64 +48,84 @@ public class CustomerService {
         }
 
     }
+
     //dang ky
-    public static void register(){
-        int customerId= cusId++;
+    public static void register() {
+        int customerId = cusId++;
 
         System.out.println("nhap username can dang ky : ");
-        String username=scanner.nextLine();
+        String username = scanner.nextLine();
 
         System.out.println("nhap mat khau: ");
-        String password= scanner.nextLine();
+        String password = scanner.nextLine();
 
         long balance = 100000;
 
-        Address address= addAddress();
+        Address address = addAddress();
 
-        Customer customer = new Customer(customerId,username,password,balance, address);
+        Customer customer = new Customer(customerId, username, password, balance, address);
         customers.add(customer);
-    }
 
-
-    // dang nhap
-    public static List<Customer> loadCustomerList(){
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/files/customers.txt"));
-            ois.readObject();
-
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            customers = (List<Customer>) ois.readObject();
+            fis.close();
+            ois.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
+        } catch (Exception e){
+            e.getMessage();
         }
-        return customers;
+
     }
-    public static void login (){
+
+
+    // dang nhap
+//    public static List<Customer> loadCustomerList(){
+//        try {
+//            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/files/customers.txt"));
+//            ois.readObject();
+//
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        } catch (ClassNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return customers;
+//    }
+    public static void login() {
         System.out.println("moi ban nhap username: ");
-        String username= scanner.nextLine();
+        String username = scanner.nextLine();
 
         System.out.println("moi ban nhap password: ");
-        String password= scanner.nextLine();
+        String password = scanner.nextLine();
 
-        Customer customer = loggingIn(username,password);
-        if (customer!=null){
+        Customer customer = loggingIn(username, password);
+        if (customer != null) {
             mainMenu(customer);
         } else System.out.println("thong tin dang nhap sai!");
 
     }
-    public static Customer loggingIn(String username, String password){
-        for (Customer customer: customers){
-            if ((customer.getUsername().equals(username))&&
-                    (customer.getPassword().equals(password))){
+
+    public static Customer loggingIn(String username, String password) {
+        for (Customer customer : customers) {
+            if ((customer.getUsername().equals(username)) &&
+                    (customer.getPassword().equals(password))) {
                 return customer;
             }
         }
         return null;
     }
-    public static void mainMenu(Customer customer){
 
-            char menu;
-            while (true) {
+    public static void mainMenu(Customer customer) {
+
+        char menu;
+        while (true) {
             System.out.println("1 de xem san pham 2 de them vao gio hang 3 de xem lai don hang 4 de chot order 5 de dang xuat 6 de thoat");
             menu = scanner.next().charAt(0);
             scanner.nextLine();
@@ -121,7 +141,7 @@ public class CustomerService {
                     CartService.displayCart(customer);
                     break;
                 case '4':
-                    CartService.order(customer);
+                    OrderService.order(customer);
                     break;
                 case '5':
                     run();
@@ -139,10 +159,10 @@ public class CustomerService {
 
 
     //xem trang
-    public static void displayPage(){
+    public static void displayPage() {
 
-        char displayPage='Y';
-        while (displayPage=='Y') {
+        char displayPage = 'Y';
+        while (displayPage == 'Y') {
 
             System.out.println("nhap so trang= ");
             int pageNumber = scanner.nextInt();
@@ -174,17 +194,17 @@ public class CustomerService {
             }
 
             System.out.println("ban co xem tiep? Y/N");
-            displayPage=scanner.next().charAt(0);
+            displayPage = scanner.next().charAt(0);
             scanner.nextLine();
         }
     }
 
     //add to cart
-    public static void addToCart(Customer customer){
+    public static void addToCart(Customer customer) {
 
-        List<CartItem> cartItems= new ArrayList<>();
-        char isAddingToCard='Y';
-        while (isAddingToCard=='Y') {
+        List<CartItem> cartItems = new ArrayList<>();
+        char isAddingToCard = 'Y';
+        while (isAddingToCard == 'Y') {
             System.out.println("nhap ten san pham can them vao gio hang ");
             String productName = scanner.nextLine();
 
@@ -192,13 +212,13 @@ public class CustomerService {
             ProductService.displayVariant(productName);
 
             System.out.println("chọn một size: ");
-            String size= scanner.nextLine();
+            String size = scanner.nextLine();
 
             System.out.println("chọn một màu: ");
-            String color= scanner.nextLine();
+            String color = scanner.nextLine();
 
-            Variant variant = ProductService.findVariant(productName, size,color);
-            int variantId= variant.getVariantId();
+            Variant variant = ProductService.findVariant(productName, size, color);
+            int variantId = variant.getVariantId();
 
             System.out.println("nhap so luong ");
             int quantity = scanner.nextInt();
@@ -206,27 +226,28 @@ public class CustomerService {
 
             Product product = ProductService.getProductByName(productName);
             if (product != null) {
-                CartItem cartitem = new CartItem(product, quantity,variantId);
+                CartItem cartitem = new CartItem(product, quantity, variantId);
                 cartItems.add(cartitem);
 
             }
             System.out.println("ban co them tiep? Y/N");
-            isAddingToCard=scanner.next().charAt(0);
+            isAddingToCard = scanner.next().charAt(0);
             scanner.nextLine();
         }
-        int cartId= CartService.addingCartId();
+        int cartId = CartService.addingCartId();
         long totalPrice = CartService.getTotalPriceForCart(cartItems);
-        Cart cart = new Cart(cartId,cartItems,totalPrice);
+        Cart cart = new Cart(cartId, cartItems, totalPrice);
         customer.setCart(cart);
     }
 
-    public static Address addAddress(){
-        Address address= new Address("ho chi minh", "nguyen van troi");
+    public static Address addAddress() {
+        Address address = new Address("ho chi minh", "nguyen van troi");
         return address;
     }
+
     public static Customer getCustomerById(int customerId) {
-        for (Customer customer: customers){
-            if (customer.getUserId()==customerId) {
+        for (Customer customer : customers) {
+            if (customer.getUserId() == customerId) {
                 return customer;
             }
         }
