@@ -12,6 +12,7 @@ public class CustomerService implements Serializable{
     private final static List<Product> products;
     private static final Scanner scanner;
     private static int cusId;
+    private static final File CUSTOMER_FILE= new File("src/files/customers.txt");
 
     static {
         customers = new ArrayList<>();
@@ -51,7 +52,7 @@ public class CustomerService implements Serializable{
     }
     public static void writeCustomers(){
         try {
-            ObjectOutputStream oos= new ObjectOutputStream(new FileOutputStream("src/files/customers.txt"));
+            ObjectOutputStream oos= new ObjectOutputStream(new FileOutputStream(CUSTOMER_FILE));
             oos.writeObject(customers);
             System.out.println("dang ky thanh cong");
             oos.close();
@@ -59,22 +60,25 @@ public class CustomerService implements Serializable{
             throw new RuntimeException(e);
         }
     }
+
     public static void loadCustomers(){
-        try {
-            ObjectInputStream ois= new ObjectInputStream(new FileInputStream("src/files/customers.txt"));
-            customers= (List<Customer>)ois.readObject();
-            ois.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+        if (CUSTOMER_FILE.length()!=0) {
+            try {
+                ObjectInputStream ois= new ObjectInputStream(new FileInputStream(CUSTOMER_FILE));
+                customers= (List<Customer>)ois.readObject();
+                ois.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            for (Customer customer:customers){
+                System.out.println(customer);
+            }
         }
-        for (Customer customer:customers){
-            System.out.println(customer);
-        }
+
     }
 
-//
 
     //dang ky
     public static void register() {
