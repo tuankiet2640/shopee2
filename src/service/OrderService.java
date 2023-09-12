@@ -2,7 +2,7 @@ package service;
 
 import entities.*;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class OrderService implements Serializable {
     private static int orderId=2400;
     private static final Scanner scanner = new Scanner(System.in);
+    private static final File ORDER_FILE= new File("src/files/order.txt");
 
     //order
     public static void order(Customer customer){
@@ -34,6 +35,7 @@ public class OrderService implements Serializable {
         scanner.nextLine();
         switch (isFinished){
             case 'Y':
+                printOrder(order);
                 orderDone(customer);
                 break;
             case'N':
@@ -44,10 +46,24 @@ public class OrderService implements Serializable {
                 break;
         }
     }
+
+    private static void printOrder(Order order) {
+        try {
+            FileWriter fileWriter= new FileWriter(ORDER_FILE);
+            BufferedWriter bufferedWriter= new BufferedWriter(fileWriter);
+            bufferedWriter.write(order.toString());
+            bufferedWriter.close();
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static void orderDone(Customer customer){
         Cart cart = new Cart(customer.getCart().getCartId(), new ArrayList<>(),0);
         customer.setCart(cart);
         CustomerService.mainMenu(customer);
+
     }
     private static int orderIdSetter(){
         return orderId++;
